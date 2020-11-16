@@ -128,3 +128,7 @@
 .rating-format-liberar{
 	font-size: 30px;
 }
+
+.cat-cap{
+	white-space: nowrap;
+}
