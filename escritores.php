@@ -22,6 +22,15 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+    <?php
+        session_start();
+        include_once "conexao_local.php";
+        if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+            session_unset();
+        }else{
+            $logado = $_SESSION['nome'];
+        }
+    ?>
 </head>
 <body>
     <!--? Preloader Start -->
@@ -60,6 +69,18 @@
                                         <li><a href="#" style="color: blue;">Escritores</a></li>
                                         <li><a href="premiados.php">Premiados</a></li>
                                         <li><a href="sobre.php">Sobre</a></li>
+                                        <?php
+                                            //session_start();
+                                            //include_once "conexao_local.php";
+                                            if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+                                                echo '<li class="d-block d-lg-none"><a href="login.html">Acesso a conta</a></li>';
+                                            }else{
+                                                //$logado = $_SESSION['nome'];
+                                                echo '<li class="d-block d-lg-none"><a href="interesse.php">Lista de Desejo</a></li>
+                                                      <li class="d-block d-lg-none"><a href="excluirconta.php">Excluir conta</a></li>
+                                                      <li class="d-block d-lg-none"><a href="desconectar.php">Desconectar</a></li>';
+                                            }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
@@ -67,8 +88,8 @@
                                 <div class="header-info-right">
                                     <div class="main-menu d-none d-lg-block">
                                         <?php
-                                            session_start();
-                                            include_once "conexao_local.php";
+                                            //session_start();
+                                            //include_once "conexao_local.php";
                                             if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
                                                 session_unset();
                                                 echo '  <ul>    
@@ -124,111 +145,48 @@
         <div class="team-area pt-160">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/john.jpg" alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">John Green</a></h3>
-                                <p>Escritor Internacional</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/chris.jpg" alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">Chris Colfer</a></h3>
-                                <p>Escritor Internacional</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/kiera.jpg" alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="#">Kiera Cass</a></h3>
-                                <p>Escritora Internacional</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/jojo.jpg" alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">Jojo Moyes</a></h3>
-                                <p>Escritora Internacional</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/george.jpg"  alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">Geoge R. R. Martin</a></h3>
-                                <p>Escritor Internacional</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                               <img src="assets/img/gallery/machado.png"  alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">Machado de Assis</a></h3>
-                                <p>Escritor Nacional</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/joaquim.jpg" alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">Joaquim Manuel de Macedo</a></h3>
-                                <p>Escritor Nacional</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php 
+                        $escritores = mysqli_query($conecta, "select * from escritores");
+                        $i=0;
+                        //Loop de todos os livros
+                        while($exibe = mysqli_fetch_assoc($escritores)){
+                            $nome[$i] = $exibe["nome"];
+                            $nacionalidade[$i] = $exibe["nacionalidade"];
+                            $descricao[$i] = $exibe["descricao"];
+                            $imagem[$i] = $exibe["imagem"];
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/jose2.jpg" alt="">
-                                <!-- Blog Social -->
-                               
-                            </div>
-                            <div class="team-caption">
-                                <h3><a href="instructor.html">Joaquim Manuel de Macedo</a></h3>
-                                <p>Escritor Nacional</p>
-                            </div>
-                        </div>
-                    </div>
+                            echo ' <div class="modal" id="'.$imagem[$i].'" tabindex="-1">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title">'.$nome[$i].'</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <p>'.$descricao[$i].'</p>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>';
+                            echo ' <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                        <div class="single-team mb-30">
+                                            <div class="aumentar-img team-img">
+                                                <img src="assets/img/gallery/'.$imagem[$i].'" alt="" height="163" data-toggle="modal" data-target="#'.$imagem[$i].'">
+                                                <!-- Blog Social -->
+                                               
+                                            </div>
+                                            <div class="team-caption">
+                                                <h3><a href="escritores.php">'.$nome[$i].'</a></h3>
+                                                <p>'.$nacionalidade[$i].'</p>
+                                            </div>
+                                        </div>
+                                    </div>';
+                            $i++;
+                        }
+                    ?>
                 </div>
             </div>
         </div>

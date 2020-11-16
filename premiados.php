@@ -22,6 +22,15 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+    <?php
+        session_start();
+        include_once "conexao_local.php";
+        if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+            session_unset();
+        }else{
+            $logado = $_SESSION['nome'];
+        }
+    ?>
 </head>
 <body>
     <!--? Preloader Start -->
@@ -60,6 +69,18 @@
                                         <li><a href="escritores.php">Escritores</a></li>
                                         <li><a href="#" style="color: blue;">Premiados</a></li>
                                         <li><a href="sobre.php">Sobre</a></li>
+                                        <?php
+                                            //session_start();
+                                            //include_once "conexao_local.php";
+                                            if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+                                                echo '<li class="d-block d-lg-none"><a href="login.html">Acesso a conta</a></li>';
+                                            }else{
+                                                //$logado = $_SESSION['nome'];
+                                                echo '<li class="d-block d-lg-none"><a href="interesse.php">Lista de Desejo</a></li>
+                                                      <li class="d-block d-lg-none"><a href="excluirconta.php">Excluir conta</a></li>
+                                                      <li class="d-block d-lg-none"><a href="desconectar.php">Desconectar</a></li>';
+                                            }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
@@ -67,8 +88,8 @@
                                 <div class="header-info-right">
                                     <div class="main-menu d-none d-lg-block">
                                         <?php
-                                            session_start();
-                                            include_once "conexao_local.php";
+                                            //session_start();
+                                            //include_once "conexao_local.php";
                                             if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
                                                 session_unset();
                                                 echo '  <ul>    
@@ -133,55 +154,55 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/hist2.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal" src="assets/img/gallery/hist2.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social --> 
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal">Uma História da Desigualdade: a concentração de renda entre os ricos no Brasil</a></h3>
+                                <h3><a href="#" >Uma História da Desigualdade: a concentração de renda entre os ricos no Brasil</a></h3>
                                 <p>Pedro H. G Ferreira de Souza</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/o2.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal1" src="assets/img/gallery/o2.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal1">O Pai da Menina Morta</a></h3>
+                                <h3><a href="#">O Pai da Menina Morta</a></h3>
                                 <p>Tiago Ferro</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/acida2.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal2" src="assets/img/gallery/acida2.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal2">À Cidade</a></h3>
+                                <h3><a href="#">À Cidade</a></h3>
                                 <p>Mailson Furtado</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/club.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal3" src="assets/img/gallery/club.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal3">O Clube dos Jardineiros de Fumaça</a></h3>
+                                <h3><a href="#">O Clube dos Jardineiros de Fumaça</a></h3>
                                 <p>Carol Bensimon</p>
                             </div>
                         </div>
@@ -198,54 +219,54 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/arthurless.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal4" src="assets/img/gallery/arthurless.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal4">As desventuras de Arthur Less</a></h3>
+                                <h3><a href="#">As desventuras de Arthur Less</a></h3>
                                 <p>Andrew Sean Greer</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/underground.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal5" src="assets/img/gallery/underground.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal5">The Underground Railroad: Os Caminhos Para a Liberdade</a></h3>
+                                <h3><a href="#">The Underground Railroad: Os Caminhos Para a Liberdade</a></h3>
                                 <p>Colson Whitehead</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/simpatizante.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal6" src="assets/img/gallery/simpatizante.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal6">O simpatizante</a></h3>
+                                <h3><a href="#" >O simpatizante</a></h3>
                                 <p>Viet Thanh Nguyen</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/todaluz.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal7" src="assets/img/gallery/todaluz.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal7">Toda Luz Que Não Podemos Ver</a></h3>
+                                <h3><a href="#" >Toda Luz Que Não Podemos Ver</a></h3>
                                 <p>Anthony Doerr</p>
                             </div>
                         </div>
@@ -262,54 +283,54 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/atwood.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal8" src="assets/img/gallery/atwood.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal8">Os Testamentos</a></h3>
+                                <h3><a href="#">Os Testamentos</a></h3>
                                 <p>Margaret Atwood</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/lincol.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal9" src="assets/img/gallery/lincol.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal9">Lincoln no limbo</a></h3>
+                                <h3><a href="#" >Lincoln no limbo</a></h3>
                                 <p>George Saunders</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/brevehistoria.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal10" src="assets/img/gallery/brevehistoria.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal10">Breve História de Sete Assassinatos</a></h3>
+                                <h3><a href="#">Breve História de Sete Assassinatos</a></h3>
                                 <p>Marlon James</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/aventuras.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal11" src="assets/img/gallery/aventuras.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal11">As Aventuras de Pi</a></h3>
+                                <h3><a href="#">As Aventuras de Pi</a></h3>
                                 <p>Yann Martel</p>
                             </div>
                         </div>
@@ -326,54 +347,54 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/karen.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal12" src="assets/img/gallery/karen.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal12">Karen</a></h3>
+                                <h3><a href="#">Karen</a></h3>
                                 <p>Ana Teresa Pereira</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/luanda.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal13" src="assets/img/gallery/luanda.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal13">Luanda, Lisboa, Paraiso</a></h3>
+                                <h3><a href="#">Luanda, Lisboa, Paraiso</a></h3>
                                 <p>Djaimilia Pereira de Almeida</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/rosas.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal14" src="assets/img/gallery/rosas.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal14">Mil Rosas Roubadas</a></h3>
+                                <h3><a href="#">Mil Rosas Roubadas</a></h3>
                                 <p>Silviano Santiago</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/maquina.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img"  data-toggle="modal" data-target="#Modal15" src="assets/img/gallery/maquina.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal15">A Máquina de Fazer Espanhóis</a></h3>
+                                <h3><a href="#">A Máquina de Fazer Espanhóis</a></h3>
                                 <p>Valter Hugo Mãe</p>
                             </div>
                         </div>
@@ -389,54 +410,54 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/enterre.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img"  data-toggle="modal" data-target="#Modal16" src="assets/img/gallery/enterre.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal16">Enterre Seus Mortos</a></h3>
+                                <h3><a href="#">Enterre Seus Mortos</a></h3>
                                 <p>Ana Paula Maia</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/oitodosete.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal17" src="assets/img/gallery/oitodosete.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal17">Oito do sete</a></h3>
+                                <h3><a href="#" >Oito do sete</a></h3>
                                 <p>Cristina Judar</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/opeso.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img"  data-toggle="modal" data-target="#Modal18" src="assets/img/gallery/opeso.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal18">O Peso do Pássaro Morto</a></h3>
+                                <h3><a href="#">O Peso do Pássaro Morto</a></h3>
                                 <p>Aline Bei</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/anatomia.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img"  data-toggle="modal" data-target="#Modal19" src="assets/img/gallery/anatomia.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal19">Anatomia do Paraíso</a></h3>
+                                <h3><a href="#">Anatomia do Paraíso</a></h3>
                                 <p>Beatriz Bracher</p>
                             </div>
                         </div>
@@ -452,54 +473,54 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/essagente.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal20" src="assets/img/gallery/essagente.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal20">Essa Gente</a></h3>
+                                <h3><a href="#" >Essa Gente</a></h3>
                                 <p>Chico Buarque</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/testamento.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal21" src="assets/img/gallery/testamento.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal21">O Testamento do Sr. Napumoceno</a></h3>
+                                <h3><a href="#">O Testamento do Sr. Napumoceno</a></h3>
                                 <p>Germano Almeida</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/cao.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img"  data-toggle="modal" data-target="#Modal22" src="assets/img/gallery/cao.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal22">Terra Sonâmbula</a></h3>
+                                <h3><a href="#">Terra Sonâmbula</a></h3>
                                 <p>Mia Couto</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/umpasseio.jpeg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal23" src="assets/img/gallery/umpasseio.jpeg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal23">Um Passeio pela África</a></h3>
+                                <h3><a href="#">Um Passeio pela África</a></h3>
                                 <p>Alberto da Costa e Silva</p>
                             </div>
                         </div>
@@ -515,54 +536,54 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/ossos.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal24" src="assets/img/gallery/ossos.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal24">Sobre os ossos dos mortos</a></h3>
+                                <h3><a href="#">Sobre os ossos dos mortos</a></h3>
                                 <p>Olga Tokarczuk</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/gigante.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal25" src="assets/img/gallery/gigante.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal25">O Gigante Enterrado</a></h3>
+                                <h3><a href="#">O Gigante Enterrado</a></h3>
                                 <p>Kazuo Ishiguro</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/ruaroma.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal26" src="assets/img/gallery/ruaroma.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal26">Uma Rua de Roma</a></h3>
+                                <h3><a href="#">Uma Rua de Roma</a></h3>
                                 <p>Patrick Modiano</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/amor.jpg" width="200" height="280" alt="">
+                                <img class="aumentar-img" data-toggle="modal" data-target="#Modal27" src="assets/img/gallery/amor.jpg" width="200" height="280" alt="">
                                 <!-- Blog Social -->
                                
                             </div>
                             <div class="team-caption">
-                                <h3><a href="#" data-toggle="modal" data-target="#Modal27">O Amor de uma Boa Mulher</a></h3>
+                                <h3><a href="#">O Amor de uma Boa Mulher</a></h3>
                                 <p>Alice Munro</p>
                             </div>
                         </div>
@@ -872,7 +893,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p></p>
+                <p>Nada é por acaso na literatura que reaviva a aventura humana e, por isso, nos encanta. "Oito do sete": eis, não por acaso, a data que marca o enredo desta bela estreia de Cristina Judar no romance. Não por acaso o dia é oito, número do infinito. Não por acaso o mês é julho, o sétimo do ano. Não por acaso vamos nos inteirando da trama pelos fragmentos narrados por quatro vozes distintas: duas amantes (Magda e Glória), um anjo (Serafim) e uma cidade (Roma). Não por acaso Magda e Glória se entregam a uma relação hétero com Rick e Jonas. Nem por acaso elas se veem como cisternas e os homens como torres. E, não por acaso, aqui os homens são embarcações; as mulheres, terra para que se afundem. Também não por acaso, neste livro, o sentimento é mar; a emoção é onda. Uma obra estruturalmente engenhosa, de alta voltagem lírica e primoroso labor com a linguagem. Não por acaso estão ausentes de suas páginas as artimanhas e facilidades da literatura monocromática que se tornou hegemônica entre nós.</p>
               </div>
               
             </div>

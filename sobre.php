@@ -22,6 +22,15 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+    <?php
+        session_start();
+        include_once "conexao_local.php";
+        if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+            session_unset();
+        }else{
+            $logado = $_SESSION['nome'];
+        }
+    ?>
 </head>
 <body>
     <!--? Preloader Start -->
@@ -60,6 +69,18 @@
                                         <li><a href="escritores.php">Escritores</a></li>
                                         <li><a href="premiados.php">Premiados</a></li>
                                         <li><a href="#" style="color: blue;">Sobre</a></li>
+                                        <?php
+                                            //session_start();
+                                            //include_once "conexao_local.php";
+                                            if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+                                                echo '<li class="d-block d-lg-none"><a href="login.html">Acesso a conta</a></li>';
+                                            }else{
+                                                //$logado = $_SESSION['nome'];
+                                                echo '<li class="d-block d-lg-none"><a href="interesse.php">Lista de Desejo</a></li>
+                                                      <li class="d-block d-lg-none"><a href="excluirconta.php">Excluir conta</a></li>
+                                                      <li class="d-block d-lg-none"><a href="desconectar.php">Desconectar</a></li>';
+                                            }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
@@ -67,8 +88,8 @@
                                 <div class="header-info-right">
                                     <div class="main-menu d-none d-lg-block">
                                         <?php
-                                            session_start();
-                                            include_once "conexao_local.php";
+                                            //session_start();
+                                            //include_once "conexao_local.php";
                                             if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
                                                 session_unset();
                                                 echo '  <ul>    
@@ -137,7 +158,7 @@
                     <div class="col-lg-8">
                         <div class="about-details-cap mb-50">
                             <h4>Nossa Missão</h4>
-                            <p>Consectetur adipiscing elit, sued do eiusmod tempor ididunt udfgt labore et dolore magna aliqua. Quis ipsum suspendisces gravida. Risus commodo viverra sebfd dho eiusmod tempor maecenas accumsan lacus. Risus commodo viverra sebfd dho eiusmod tempor maecenas accumsan lacus.
+                            <p>Incentivar de uma maneira mais didática 
                             </p>
                             <p> Risus commodo viverra sebfd dho eiusmod tempor maecenas accumsan lacus. Risus commodo viverra sebfd dho eiusmod tempor maecenas accumsan.</p>
                         </div>
@@ -163,7 +184,7 @@
                             <div class="single-testimonial pt-65">
                                 <!-- Testimonial tittle -->
                                 <div class="testimonial-icon mb-45">
-                                    <img src="assets/img/gallery/testimonial.png" class="ani-btn " alt="">
+                                    <img src="assets/img/gallery/pequeno.jpg" height="125" class="ani-btn " alt="">
                                 </div>
                                     <!-- Testimonial Content -->
                                 <div class="testimonial-caption text-center">
@@ -186,7 +207,7 @@
                             <div class="single-testimonial pt-65">
                                 <!-- Testimonial tittle -->
                                 <div class="testimonial-icon mb-45">
-                                    <img src="assets/img/gallery/testimonial.png" class="ani-btn " alt="">
+                                     <img src="assets/img/gallery/melhor.jpg" height="125" class="ani-btn " alt="">
                                 </div>
                                     <!-- Testimonial Content -->
                                 <div class="testimonial-caption text-center">

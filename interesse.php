@@ -22,6 +22,15 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <?php
+        session_start();
+        include_once "conexao_local.php";
+        if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+            session_unset();
+        }else{
+            $logado = $_SESSION['nome'];
+        }
+    ?>
 </head>
 <body>
     <!--? Preloader Start -->
@@ -60,6 +69,18 @@
                                         <li><a href="escritores.php">Escritores</a></li>
                                         <li><a href="premiados.php">Premiados</a></li>
                                         <li><a href="sobre.php">Sobre</a></li>
+                                        <?php
+                                            //session_start();
+                                            //include_once "conexao_local.php";
+                                            if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+                                                echo '<li class="d-block d-lg-none"><a href="login.html">Acesso a conta</a></li>';
+                                            }else{
+                                                //$logado = $_SESSION['nome'];
+                                                echo '<li class="d-block d-lg-none"><a href="interesse.php">Lista de Desejo</a></li>
+                                                      <li class="d-block d-lg-none"><a href="excluirconta.php">Excluir conta</a></li>
+                                                      <li class="d-block d-lg-none"><a href="desconectar.php">Desconectar</a></li>';
+                                            }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
@@ -67,8 +88,8 @@
                                 <div class="header-info-right">
                                     <div class="main-menu d-none d-lg-block">
                                         <?php
-                                            session_start();
-                                            include_once "conexao_local.php";
+                                            //session_start();
+                                            //include_once "conexao_local.php";
                                             if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
                                                 session_unset();
                                                 echo '  <ul>    
@@ -159,7 +180,7 @@
                     echo '  <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                                 <div class="card">
                                     <div class="aumentar-img">
-                                        <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" alt="...">
+                                        <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" height="225" alt="...">
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">'.$nome[$i].'</h5>

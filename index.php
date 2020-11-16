@@ -171,7 +171,7 @@
                     <?php 
                         include_once "conexao_local.php";
                         $conecta = mysqli_connect($nome_servidor, $nome_usuario, $senhaBanco, $nome_banco);
-                        $livros = mysqli_query($conecta, "SELECT * FROM avaliacao as av inner join livros as l on av.livros_id = l.id group by av.livros_id order by l.titulo desc");
+                        $livros = mysqli_query($conecta, "SELECT * FROM avaliacao as av inner join livros as l on av.livros_id = l.id group by av.livros_id order by l.titulo desc limit 8");
                         $i=0;
                         //Loop de todos os livros
                         while($exibe = mysqli_fetch_assoc($livros)){
@@ -200,14 +200,14 @@
                                       </div>
                                     </div>';
 
-                            echo '<div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                            echo '<div class="col-lg-3 col-md-6 col-sm-6 col-6">
                                     <div class="single-cat mb-15">
                                         <div class="cat-icon">
                                             <span class="flaticon-education"></span>
                                         </div>
                                         <div class="cat-cap">
                                             <h5><a class="texto-riiii">'.$titulo[$i].'</a></h5>
-                                            <p class="texto-riiii">'.$autor[$i].' - 2014</p>
+                                            <p class="texto-riiii">'.$autor[$i].'</p>
                                         
                                             <a href="#" class="read-more1" data-toggle="modal" data-target="#'.$img_id[$i].'">Sinopse</a>
                                         </div>
@@ -247,11 +247,11 @@
                         <!-- Single course -->
                         <div class="single-course mb-15">
                             <div class="course-img">
-                                <img src="assets/img/gallery/selecao.jpg" height="300" alt="">
+                                <img src="assets/img/gallery/selecao.jpg" data-toggle="modal" data-target="#Modal6"  height="225" alt="">
                             </div>
                             <div class="course-caption">
                                 <div class="course-cap-top">
-                                    <h4><a href="#" data-toggle="modal" data-target="#Modal6">A seleção</a></h4>
+                                    <h4><a href="#" >A seleção</a></h4>
                                 </div>
                                 
                             </div>
@@ -261,11 +261,11 @@
                         <!-- Single course -->
                         <div class="single-course mb-15">
                             <div class="course-img">
-                                <img src="assets/img/gallery/prometida.jpg" height="300" alt="">
+                                <img src="assets/img/gallery/prometida.jpg" data-toggle="modal" data-target="#Modal7"  height="225" alt="">
                             </div>
                             <div class="course-caption">
                                 <div class="course-cap-top">
-                                    <h4><a href="#" data-toggle="modal" data-target="#Modal7">A Prometida</a></h4>
+                                    <h4><a href="#" >A Prometida</a></h4>
                                 </div>
                                 
                             </div>
@@ -275,11 +275,11 @@
                         <!-- Single course -->
                         <div class="single-course mb-15">
                             <div class="course-img">
-                                <img src="assets/img/gallery/rainha.jpg" height="300" alt="">
+                                <img src="assets/img/gallery/rainha.jpg" data-toggle="modal" data-target="#Modal8"  height="225" alt="">
                             </div>
                             <div class="course-caption">
                                 <div class="course-cap-top">
-                                    <h4><a href="#" data-toggle="modal" data-target="#Modal8">A Rainha Vermelha</a></h4>
+                                    <h4><a href="#" >A Rainha Vermelha</a></h4>
                                 </div>
                                 
                             </div>
@@ -305,12 +305,12 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/machado.png" height="163" alt="">
+                                <img class="aumentar-img" src="assets/img/gallery/machado.png" data-toggle="modal" data-target="#Modal" height="163" alt="">
                                 <!-- Blog Social -->
                               
                             </div>
                             <div class="team-caption">
-                                <h3><a href="instructor.html">Machado de Assis</a></h3>
+                                <h3><a href="#">Machado de Assis</a></h3>
                                 <p>Escritor Nacional</p>
                             </div>
                         </div>
@@ -318,12 +318,12 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/will.jpg" height="163" alt="">
+                                <img class="aumentar-img" src="assets/img/gallery/will.jpg" data-toggle="modal" data-target="#Modal1" height="163" alt="">
                                 <!-- Blog Social -->
                               
                             </div>
                             <div class="team-caption">
-                                <h3><a href="instructor.html">William Shakespeare</a></h3>
+                                <h3><a href="#">William Shakespeare</a></h3>
                                 <p>Escritor Internacional</p>
                             </div>
                         </div>
@@ -331,12 +331,12 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/curry.jpg" height="163" alt="">
+                                <img class="aumentar-img" src="assets/img/gallery/curry.jpg" data-toggle="modal" data-target="#Modal2" height="163" alt="">
                                 <!-- Blog Social -->
                               
                             </div>
                             <div class="team-caption">
-                                <h3><a href="instructor.html">Augusto Cury</a></h3>
+                                <h3><a href="#">Augusto Cury</a></h3>
                                 <p>Escritor Internacional</p>
                             </div>
                         </div>
@@ -344,12 +344,12 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                         <div class="single-team mb-30">
                             <div class="team-img">
-                                <img src="assets/img/gallery/nicho.png" height="163" alt="">
+                                <img class="aumentar-img" src="assets/img/gallery/nicho.png" height="163" data-toggle="modal" data-target="#Modal3" alt="">
                                 <!-- Blog Social -->
                               
                             </div>
                             <div class="team-caption">
-                                <h3><a href="instructor.html">Nicholas Sparks</a></h3>
+                                <h3><a href="#">Nicholas Sparks</a></h3>
                                 <p>Escritor Internacional</p>
                             </div>
                         </div>
@@ -430,13 +430,13 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Sapiens</h5>
+                <h5 class="modal-title">Machado de Assis</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p>Somos a única espécie que acredita em coisas que não existem na natureza, como Estados, dinheiro e direitos humanos. Partindo dessa ideia, Yuval Noah Harari, doutor em história pela Universidade de Oxford, aborda em Sapiens a história da humanidade sob uma perspectiva inovadora.</p>
+                <p>Joaquim Maria Machado de Assis foi um escritor brasileiro, considerado por muitos críticos, estudiosos, escritores e leitores um dos maiores senão o maior nome da literatura do Brasil. Para o crítico literário norte-americano Harold Bloom, Machado de Assis é o maior escritor negro de todos os tempos.</p>
               </div>
               
             </div>
@@ -447,31 +447,30 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">It - A Coisa</h5>
+                <h5 class="modal-title">William Shakespeare</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p>O mais profundo e tenebroso medo. Naquele verão, eles enfrentaram pela primeira vez a Coisa, um ser sobrenatural e maligno que deixou terríveis marcas de sangue em Derry. ... Em "It - A Coisa", clássico de Stephen King em nova edição, os amigos irão até o fim, mesmo que isso signifique ultrapassar os próprios limites.</p>
+                <p>William Shakespeare foi um poeta, dramaturgo e ator inglês, tido como o maior escritor do idioma inglês e o mais influente dramaturgo do mundo. É chamado frequentemente de poeta nacional da Inglaterra e de "Bardo do Avon".</p>
               </div>
               
             </div>
           </div>
         </div>
 
-
         <div class="modal" id="Modal2" tabindex="-1">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Game of Thrones</h5>
+                <h5 class="modal-title">Augusto Cury</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p> Quando Eddard Stark, lorde do castelo de Winterfell, aceita a prestigiada posição de Mão do Rei oferecida pelo velho amigo, o rei Robert Baratheon, não desconfia que sua vida está prestes a ruir em sucessivas tragédias</p>
+                <p>Augusto Jorge Cury é um psiquiatra, professor e escritor brasileiro. Augusto é autor da Teoria da Inteligência Multifocal e seus livros foram publicados em mais de 70 países, com mais de 25 milhões de livros vendidos somente no Brasil.</p>
               </div>
               
             </div>
@@ -482,47 +481,13 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Harry Potter</h5>
+                <h5 class="modal-title">Nicholas Sparks</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p>Harry Potter vive com os tios Dursley, onde é mal tratado até completar seus 11 anos. É com essa idade que o jovem bruxo começa a receber cartas da escola de Hogwarts. ... Harry é apresentado ao mundo dos bruxos e descobre que é muito famoso por ter sobrevivido ao ataque de Voldemort.</p>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-
-        <div class="modal" id="Modal4" tabindex="-1">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">A Garota Do Lago</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Summit Lake, uma pequena cidade entre montanhas, é esse tipo de lugar, bucólico e com encantadoras casas dispostas à beira de um longo trecho de água intocada. Duas semanas atrás, a estudante de direito Becca Eckersley foi brutalmente assassinada em uma dessas casas.</p>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-
-        <div class="modal" id="Modal5" tabindex="-1">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Terra De Histórias</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>Os irmãos gêmeos Alex e Conner estão vivendo os piores dias de suas vidas. Para tentar alegrá-los, no aniversário de 12 anos, a avó os presenteia com o antigo livro de histórias que o pai costumava ler para eles, quando crianças, antes de dormir. E a magia volta a tomar conta da vida dos dois - de verdade!</p>
+                <p>Augusto Jorge Cury é um psiquiatra, professor e escritor brasileiro. Augusto é autor da Teoria da Inteligência Multifocal e seus livros foram publicados em mais de 70 países, com mais de 25 milhões de livros vendidos somente no Brasil.</p>
               </div>
               
             </div>

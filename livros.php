@@ -23,6 +23,15 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+    <?php
+        session_start();
+        include_once "conexao_local.php";
+        if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+            session_unset();
+        }else{
+            $logado = $_SESSION['nome'];
+        }
+    ?>
 </head>
 <body>
     <!--? Preloader Start -->
@@ -61,6 +70,18 @@
                                         <li><a href="escritores.php">Escritores</a></li>
                                         <li><a href="premiados.php">Premiados</a></li>
                                         <li><a href="sobre.php">Sobre</a></li>
+                                        <?php
+                                            //session_start();
+                                            //include_once "conexao_local.php";
+                                            if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
+                                                echo '<li class="d-block d-lg-none"><a href="login.html">Acesso a conta</a></li>';
+                                            }else{
+                                                //$logado = $_SESSION['nome'];
+                                                echo '<li class="d-block d-lg-none"><a href="interesse.php">Lista de Desejo</a></li>
+                                                      <li class="d-block d-lg-none"><a href="excluirconta.php">Excluir conta</a></li>
+                                                      <li class="d-block d-lg-none"><a href="desconectar.php">Desconectar</a></li>';
+                                            }
+                                        ?>
                                     </ul>
                                 </nav>
                             </div>
@@ -68,8 +89,8 @@
                                 <div class="header-info-right">
                                     <div class="main-menu d-none d-lg-block">
                                         <?php
-                                            session_start();
-                                            include_once "conexao_local.php";
+                                            //session_start();
+                                            //include_once "conexao_local.php";
                                             if((!isset($_SESSION['email']) == true) and (!isset ($_SESSION['senha']) == true)){
                                                 session_unset();
                                                 $email = "invalido";
@@ -173,6 +194,7 @@
                                                         $imagem[$i] = $exibe["imagem"];
                                                         $livros_id[$i] = $exibe["id"];
                                                         $descricao[$i] = $exibe["descricao"];
+                                                        $ano[$i] = date("d/m/Y", strtotime($ano[$i]));
 
                                                         $rating[$i] = mysqli_query($conecta, 'select * from avaliacao inner join livros on avaliacao.livros_id = livros.id where livros_id = '.$livros_id[$i].'');
                                                         $cont=0;
@@ -233,7 +255,7 @@
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">'.$nome[$i].'</h5>
                                                                         <h6 class="card-subtitle mb-2 text-muted">'.$autor[$i].'</h6>
-                                                                        <small class="text-muted">2019</small>
+                                                                        <small class="text-muted">'.$ano[$i].'</small>
                                                                         <div class="course-caption">
                                                                             <div class="botao-add" '.$botao.'>
                                                                                 <form action="interesseAdd.php" method="POST">
@@ -277,6 +299,7 @@
                                                 $i=0;
                                                 //Loop de todos os livros
                                                 while($exibe = mysqli_fetch_assoc($livros)){
+                                                    $v=1;
                                                     $nome[$i] = $exibe["titulo"];
                                                     $autor[$i] = $exibe["autor"];
                                                     $ano[$i] = $exibe["ano"];
@@ -284,11 +307,12 @@
                                                     $imagem[$i] = $exibe["imagem"];
                                                     $livros_id[$i] = $exibe["id"];
                                                     $descricao[$i] = $exibe["descricao"];
+                                                    $ano[$i] = date("d/m/Y", strtotime($ano[$i]));
 
                                                     $rating[$i] = mysqli_query($conecta, 'select * from avaliacao inner join livros on avaliacao.livros_id = livros.id where livros_id = '.$livros_id[$i].'');
                                                     $cont=0;
                                                     $x=0;
-                                                    echo ' <div class="modal" id="'.$imagem[$i].'" tabindex="-1">
+                                                    echo ' <div class="modal" id="'.$imagem[$i].$v.'" tabindex="-1">
                                                                   <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
                                                                       <div class="modal-header">
@@ -339,12 +363,12 @@
                                                     echo '<div class="col-xl-3 col-lg-3 col-md-4 col-6">
                                                             <div class="card">
                                                                 <div class="aumentar-img">
-                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].'" height="225" alt="...">
+                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].$v.'" height="225" alt="...">
                                                                 </div>
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">'.$nome[$i].'</h5>
                                                                     <h6 class="card-subtitle mb-2 text-muted">'.$autor[$i].'</h6>
-                                                                    <small class="text-muted">2019</small>
+                                                                    <small class="text-muted">'.$ano[$i].'</small>
                                                                     <div class="course-caption">
                                                                         <div class="botao-add" '.$botao.'>
                                                                             <form action="interesseAdd.php" method="POST">
@@ -374,6 +398,7 @@
                                                             </div>
                                                         </div>';
                                                     $i++;
+                                                    $v++;
                                                 }
                                             ?>
                                         </div>
@@ -387,6 +412,7 @@
                                                 $i=0;
                                                 //Loop de todos os livros
                                                 while($exibe = mysqli_fetch_assoc($livros)){
+                                                    $v=1;
                                                     $nome[$i] = $exibe["titulo"];
                                                     $autor[$i] = $exibe["autor"];
                                                     $ano[$i] = $exibe["ano"];
@@ -394,11 +420,12 @@
                                                     $imagem[$i] = $exibe["imagem"];
                                                     $livros_id[$i] = $exibe["id"];
                                                     $descricao[$i] = $exibe["descricao"];
+                                                    $ano[$i] = date("d/m/Y", strtotime($ano[$i]));
 
                                                     $rating[$i] = mysqli_query($conecta, 'select * from avaliacao inner join livros on avaliacao.livros_id = livros.id where livros_id = '.$livros_id[$i].'');
                                                     $cont=0;
                                                     $x=0;
-                                                    echo ' <div class="modal" id="'.$imagem[$i].'" tabindex="-1">
+                                                    echo ' <div class="modal" id="'.$imagem[$i].$v.'" tabindex="-1">
                                                                   <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
                                                                       <div class="modal-header">
@@ -449,12 +476,12 @@
                                                     echo '<div class="col-xl-3 col-lg-3 col-md-4 col-6">
                                                             <div class="card">
                                                                 <div class="aumentar-img">
-                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].'" height="225" alt="...">
+                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].$v.'" height="225" alt="...">
                                                                 </div>
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">'.$nome[$i].'</h5>
                                                                     <h6 class="card-subtitle mb-2 text-muted">'.$autor[$i].'</h6>
-                                                                    <small class="text-muted">2019</small>
+                                                                    <small class="text-muted">'.$ano[$i].'</small>
                                                                     <div class="course-caption">
                                                                         <div class="botao-add" '.$botao.'>
                                                                             <form action="interesseAdd.php" method="POST">
@@ -505,6 +532,7 @@
                                                 $i=0;
                                                 //Loop de todos os livros
                                                 while($exibe = mysqli_fetch_assoc($livros)){
+                                                    $v=1;                                                    
                                                     $nome[$i] = $exibe["titulo"];
                                                     $autor[$i] = $exibe["autor"];
                                                     $ano[$i] = $exibe["ano"];
@@ -512,11 +540,12 @@
                                                     $imagem[$i] = $exibe["imagem"];
                                                     $livros_id[$i] = $exibe["id"];
                                                     $descricao[$i] = $exibe["descricao"];
+                                                    $ano[$i] = date("d/m/Y", strtotime($ano[$i]));
 
                                                     $rating[$i] = mysqli_query($conecta, 'select * from avaliacao inner join livros on avaliacao.livros_id = livros.id where livros_id = '.$livros_id[$i].'');
                                                     $cont=0;
                                                     $x=0;
-                                                    echo ' <div class="modal" id="'.$imagem[$i].'" tabindex="-1">
+                                                    echo ' <div class="modal" id="'.$imagem[$i].$v.'" tabindex="-1">
                                                                   <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
                                                                       <div class="modal-header">
@@ -567,12 +596,12 @@
                                                     echo '<div class="col-xl-3 col-lg-3 col-md-4 col-6">
                                                             <div class="card">
                                                                 <div class="aumentar-img">
-                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].'" height="225" alt="...">
+                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].$v.'" height="225" alt="...">
                                                                 </div>
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">'.$nome[$i].'</h5>
                                                                     <h6 class="card-subtitle mb-2 text-muted">'.$autor[$i].'</h6>
-                                                                    <small class="text-muted">2019</small>
+                                                                    <small class="text-muted">'.$ano[$i].'</small>
                                                                     <div class="course-caption">
                                                                         <div class="botao-add" '.$botao.'>
                                                                             <form action="interesseAdd.php" method="POST">
@@ -615,6 +644,7 @@
                                                 $i=0;
                                                 //Loop de todos os livros
                                                 while($exibe = mysqli_fetch_assoc($livros)){
+                                                    $v=1;                                                    
                                                     $nome[$i] = $exibe["titulo"];
                                                     $autor[$i] = $exibe["autor"];
                                                     $ano[$i] = $exibe["ano"];
@@ -622,11 +652,12 @@
                                                     $imagem[$i] = $exibe["imagem"];
                                                     $livros_id[$i] = $exibe["id"];
                                                     $descricao[$i] = $exibe["descricao"];
+                                                    $ano[$i] = date("d/m/Y", strtotime($ano[$i]));
 
                                                     $rating[$i] = mysqli_query($conecta, 'select * from avaliacao inner join livros on avaliacao.livros_id = livros.id where livros_id = '.$livros_id[$i].'');
                                                     $cont=0;
                                                     $x=0;
-                                                    echo ' <div class="modal" id="'.$imagem[$i].'" tabindex="-1">
+                                                    echo ' <div class="modal" id="'.$imagem[$i].$v.'" tabindex="-1">
                                                                   <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
                                                                       <div class="modal-header">
@@ -677,12 +708,12 @@
                                                     echo '<div class="col-xl-3 col-lg-3 col-md-4 col-6">
                                                             <div class="card">
                                                                 <div class="aumentar-img">
-                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].'" height="225" alt="...">
+                                                                    <img src="assets/img/gallery/'.$imagem[$i].'" class="card-img-top img-responsive" data-toggle="modal" data-target="#'.$imagem[$i].$v.'" height="225" alt="...">
                                                                 </div>
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">'.$nome[$i].'</h5>
                                                                     <h6 class="card-subtitle mb-2 text-muted">'.$autor[$i].'</h6>
-                                                                    <small class="text-muted">2019</small>
+                                                                    <small class="text-muted">'.$ano[$i].'</small>
                                                                     <div class="course-caption">
                                                                         <div class="botao-add" '.$botao.'>
                                                                             <form action="interesseAdd.php" method="POST">
